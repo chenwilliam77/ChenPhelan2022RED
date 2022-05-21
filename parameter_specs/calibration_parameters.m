@@ -14,9 +14,9 @@ s.beta_3 = 0;
 
 % Technology
 s.ab    = 0.127;       % bank productivity
-s.ah    = 0.8 * s.ab; % HH productivity
-s.eps1  = 1.0;         % capital efficiency parameter
-s.eps2  = 3.0;         % capital adjustment costs
+s.ah    = 0.8 * s.ab;  % HH productivity
+s.eps1  = 1.0;         % capital efficiency parameter (see investment_fnct.m for details)
+s.eps2  = 3.0;         % capital adjustment costs (this is the epsilon reported in the paper, see investment_fnct.m for details)
 s.T     = .048;        % tax on banks' wealth
 s.delta = .10;         % Depreciation rate
 s.sigma = 0.015;       % volatility of capital growth shocks
@@ -50,8 +50,8 @@ else
 end
 
 % Boundary conditions (affects boundary macropru)
-s.issuance = 1;  % 1 + gamma, where gamma is the cost of issuing new equity
-s.thetastar = 1; % Boundary condition for theta
+s.issuance = Inf;  % = 1 + gamma, where gamma is the cost of issuing new equity
+s.thetastar = 1; % Boundary condition for theta at etastar
 
 % for plots
 s.color = 'k'; s.line = '-'; s.width = 3;

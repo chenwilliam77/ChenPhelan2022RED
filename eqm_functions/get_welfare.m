@@ -66,7 +66,7 @@ N  = s.N_welfare;
 L2coefs          = zeros(N, 1);
 L2coefs(2:N - 1) = eta_sigma_etasq(2:N - 1) ./ (2 .* dX(1:N - 2) .* dX(2:N - 1));
 L2coefs(end)     = eta_sigma_etasq(end) ./ (2 .* dX(end - 1) .* dX(end)); % result of reflecting boundary & ghost nodes approach
-if (isfield(s, 'tail_risk') && s.tail_risk) || (isfield(s, 'issuance') && s.issuance > 1)
+if (isfield(s, 'tail_risk') && s.tail_risk) || (isfield(s, 'issuance') && s.issuance < Inf)
     L2coefs(1)   = eta_sigma_etasq(end) ./ (2 .* dX(end - 1) .* dX(end)); % exogenous boundary at left => do not zero vol out
 end
 

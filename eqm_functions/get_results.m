@@ -25,7 +25,7 @@ function solution = get_results(etaout, fout, s)
     Qp = fp(:, 3);
     Qp(1:end - 1) = diff(Q) ./ diff(etaout); % forward finite difference w/zero boundary condition at end
     Qpp = second_deriv(etaout, Q);
-    if ~(isfield(s, 'tail_risk') && s.tail_risk) && ~(isfield(s, 'issuance') && s.issuance > 1)
+    if ~(isfield(s, 'tail_risk') && s.tail_risk) && ~(isfield(s, 'issuance') && s.issuance < Inf)
         Qpp(1) = 0; % sigma_eta = 0 at eta = 0 when neither tail risk nor costly equity issuance at play
     end
     muQ = Qp ./ Q .* Dyn(:, 4) .* etaout + Qpp ./ Q ./ 2 .* (Dyn(:, 2) .* etaout).^2;
