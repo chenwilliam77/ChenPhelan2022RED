@@ -50,8 +50,8 @@ else
 end
 
 % Boundary conditions (affects boundary macropru)
-s.issuance = Inf;  % = 1 + gamma, where gamma is the cost of issuing new equity
-s.thetastar = 1; % Boundary condition for theta at etastar
+s.issuance = Inf; % = 1 + gamma, where gamma is the cost of issuing new equity
+s.thetastar = 1;  % Boundary condition for theta at etastar
 
 % for plots
 s.color = 'k'; s.line = '-'; s.width = 3;
@@ -82,7 +82,7 @@ s.N_welfare = 100; % grid points for calculating welfare via finite differences
 s.odesolver = 'ode45';
 s.lsq_solver = 'fminsearch'; % preferred for now, seems to work better b/c lsq problem is not smooth, and fminsearch is derivative free
 s.lsq_weights = [20; 1; 20]; % weights on boundary conditions [theta(etastar); theta'(etastar); Q(etastar)];
-s.lsq_iters = 100;
-s.lsq_tol = 1e-2;
+s.lsq_iters = 100; % maximum number of iterations for lsq solver
+s.lsq_tol = 1e-2; % tolerance level for lsq solver, 1e-2 is sufficient to deliver good results for boundary condition
 s.calibrate = 0; % if set to 1, then the solvers are run in "calibration" mode, with fewer quantities being calculated to accelerate computation
-s.Phi_form = 1; % functional form for investment
+s.Phi_form = 1; % functional form for investment, see investment_fnct.m

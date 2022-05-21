@@ -6,11 +6,16 @@ function out = investment_fnct(Q, to_calc, s)
 % Phi(iota), however, and is intended to centralize
 % the calculation of the investment-related quantities.
 %
-% The function implemented here is
+% The function implemented here can take one of two forms.
+% The first form is
 %
-% Phi(iota) = (eps1 / eps2) * log((eps2 * iota + exp(eps2 * delta) - eps2 * delta) / eps1)
+% Phi(iota) = delta + (eps1 / eps2) * log((eps2 * iota + exp(eps2 * delta) - eps2 * delta) / eps1)
 %
-% To recover the form used in the paper, set eps1 = 1.
+% The second form is
+%
+% Phi(iota) = (eps1 / eps2) * log((eps2 * iota + 1) / eps1)
+%
+% The paper uses the first functional form and sets eps1 = 1.
 %
 % Q:       capital price
 %
@@ -35,7 +40,7 @@ else
     Phi_form = 1;
 end
 
-if Phi_form == 1 % Phi(iota) = delta + log(eps * iota + 1 - eps * delta) / eps
+if Phi_form == 1
     if strcmp(to_calc, 'Phi')
         out = mu_a + s.delta + (s.eps1 / s.eps2) * log(Q);
     elseif strcmp(to_calc, 'iota')
