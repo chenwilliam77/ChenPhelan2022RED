@@ -279,7 +279,7 @@
                 title('Risk and Liquidity Premia')
             end
         end
-        legend('ERP','LP','location','best')
+        legend('SP','LP','location','best')
 
     figure(40)
         plot(solution.eta_density, solution.density,'color',color,'linestyle',s.line,'linewidth',s.width); hold on
