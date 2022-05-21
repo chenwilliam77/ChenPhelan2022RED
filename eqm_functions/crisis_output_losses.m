@@ -1,4 +1,6 @@
 function avg_gdp_loss = crisis_output_losses(sol, T, N, s)
+% avg_gdp_loss = crisis_output_losses(sol, T, N, s)
+%
 % Calculate the average output loss in GDP
 % over T years after a crisis starts
 % using the Euler-Maruyama algorithm.
@@ -12,7 +14,7 @@ function avg_gdp_loss = crisis_output_losses(sol, T, N, s)
 %
 % s: settings struct
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
 
 % Calculate total number of periods
 dt = 1 / 12; % dt = 1 month
@@ -91,7 +93,7 @@ end
 %             eta_mul_mu_eta = interp_eta_mul_mu_eta(eta);
 %             eta_mul_sigma_eta = interp_eta_mul_sigma_eta(eta);
 %             eta = euler_maruyama(eta, eta_mul_mu_eta, eta_mul_sigma_eta, dt, dW(t, sim_iter));
-% 
+%
 %             % Handle boundary violations by assuming
 %             % distance traveled across boundary is how much it is reflected
 %             if eta < s.start
@@ -99,11 +101,11 @@ end
 %             elseif eta > etastar
 %                 eta = etastar - (eta - etastar);
 %             end
-% 
+%
 %             % calculate GDP flow
 %             GDP_flow(t) = interp_gdp(eta);
 %         end
-% 
+%
 %         % Compute GDP stock over T years
 %         GDP_stock(sim_iter) = dt * sum(GDP_flow);
 %     end

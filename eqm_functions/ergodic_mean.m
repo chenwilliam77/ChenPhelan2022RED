@@ -1,7 +1,9 @@
 function out = ergodic_mean(x, density, eta)
+% out = ergodic_mean(x, density, eta)
+%
 % Compute the ergodic mean (integrate w.r.t. stationary density)
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
 
     % mass = density' * diff(eta); % Naive Riemann sum approach
     % out  = (x .* density)' * diff(eta) / mass;

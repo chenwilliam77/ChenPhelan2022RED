@@ -1,8 +1,10 @@
 function solution = get_calibration_results(etaout, fout, s)
+% solution = get_calibration_results(etaout, fout, s)
+%
 % This function calculates the minimal number of quantities
 % for the calibration exercise.
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
     % Set up
     N                 = length(etaout);
     Dyn               = zeros(N, 8);

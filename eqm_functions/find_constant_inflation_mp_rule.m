@@ -32,7 +32,7 @@ function [new_s, converged] = find_constant_inflation_mp_rule(s, varargin)
 % tol:           convergence tolerance (maximum absolute deviation
 %                from target inflation at nodes)
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
 
 % Process varargin
 for j = 1:2:length(varargin)

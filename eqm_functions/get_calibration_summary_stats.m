@@ -1,7 +1,9 @@
 function summary_stats = get_calibration_summary_stats(solution, s)
+% summary_stats = get_calibration_summary_stats(solution, s)
+%
 % This function calculates moments for calibration purposes.
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
 
 % Ergodic averages
 summary_stats.ergodic = get_ergodic_moments(solution, s);

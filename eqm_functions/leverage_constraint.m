@@ -1,9 +1,11 @@
 function [L, dL] = leverage_constraint(eta, f, lc)
+% [L, dL] = leverage_constraint(eta, f, lc)
+%
 % Implements the leverage constraint function L(eta, f(eta))
 % depending on the settings specified in the struct lc.
 % The first derivative must also be specified.
 %
-% Written by William Chen and Greg Phelan, Aug. 2020
+% Written by William Chen and Gregory Phelan, Aug. 2020
 
 Ltype = lc.type;
 if strcmp(Ltype, 'constant')

@@ -1,10 +1,12 @@
 function out = fit_boundary_conditions(x, F0, s)
+% out = fit_boundary_conditions(x, F0, s)
+%
 % Wrapper function reformulating the
 % boundary value problem as a least squares problem
 % by minimizing the residuals of the boundary conditions
 % at etastar.
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
 
     % Determine left boundary conditions
     if isfield(s, 'tail_risk')
@@ -70,9 +72,6 @@ function out = fit_boundary_conditions(x, F0, s)
 
     % Construct residuals
     [value, ~, ~] = odeevnt(etaout(end), fout(end, :));
-    % implied_Qpstar = fout(end, 3) * s.r * (fout(end, 2) * etaout(end) + fout(end, 1) - 1) / ...
-    %     (s.r * (1 + (fout(end, 1) - 1) * etaout(end)) + s.eps1 / s.eps2);
-    % residuals = [value'; (implied_Qpstar - 0)];
     residuals = [value'; (fout(end, 3) - s.Qmax)];
 
     if strcmp(s.lsq_solver, 'lsqnonlin')

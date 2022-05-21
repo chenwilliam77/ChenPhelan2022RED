@@ -1,4 +1,6 @@
 function stab_summary_stats = compare_stability(sol_cell, sum_stat_cell, first_fignum, legend_text, colors, s, save_plots, figurespath);
+% stab_summary_stats = compare_stability(sol_cell, sum_stat_cell, first_fignum, legend_text, colors, s, save_plots, figurespath);
+%
 % Compares stability across different equilibria through
 % plots and summary statistics
 %
@@ -22,7 +24,7 @@ function stab_summary_stats = compare_stability(sol_cell, sum_stat_cell, first_f
 %
 % figurespath:   path to the figures folder to save plots (optional)
 %
-% Written by William Chen and Greg Phelan, Feb. 2022
+% Written by William Chen and Gregory Phelan, Feb. 2022
 
 % Set up
 N = length(sol_cell) - 1; % number of things to plots, not number of equilibria

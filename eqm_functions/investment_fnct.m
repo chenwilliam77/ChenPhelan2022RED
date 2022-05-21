@@ -1,4 +1,6 @@
 function out = investment_fnct(Q, to_calc, s)
+% out = investment_fnct(Q, to_calc, s)
+%
 % Implements the internal investment function
 % for capital growth. This function computes more than
 % Phi(iota), however, and is intended to centralize
@@ -18,7 +20,7 @@ function out = investment_fnct(Q, to_calc, s)
 %
 % s:       settings struct
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
 
 % Check if exogenous TFP growth is a parameter
 if isfield(s, 'mu_a')

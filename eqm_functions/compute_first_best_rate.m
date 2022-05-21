@@ -1,11 +1,11 @@
 function [opt_i, exitflag] = compute_first_best_rate(s)
-% out = compute_first_best_rate(s)
+% [opt_i, exitflag] = compute_first_best_rate(s)
 %
 % Calculate the first best interest rate
 %
-% Written by William Chen and Greg Phelan, Feb. 2022
+% Written by William Chen and Gregory Phelan, Feb. 2022
 
-% Calculate optimal i if allocating all capital to banks 
+% Calculate optimal i if allocating all capital to banks
 gamma = s.kappa / s.m;
 Q1 = consumption_market_clearing(0, 1, 1, 'Q', s);
 Phi1 = investment_fnct(Q1, 'Phi', s);

@@ -1,9 +1,11 @@
 function [fp, dyn, risk_premium, Sharpe, liquidity_premium] = fnct(eta, f, s)
+% [fp, dyn, risk_premium, Sharpe, liquidity_premium] = fnct(eta, f, s)
+%
 % takes scalar eta, a 3x1 vector f = [theta, theta', Q], and parameters
 % s, and computes fp, the derivative of f with respect to eta.
 % Capital growth is driven by internal investment.
 %
-% written by William Chen and Greg Phelan, Jan. 2022
+% written by William Chen and Gregory Phelan, Jan. 2022
 
 	% Set up
 	theta  = f(1);
@@ -15,13 +17,10 @@ function [fp, dyn, risk_premium, Sharpe, liquidity_premium] = fnct(eta, f, s)
 	else
 	    int = interest(eta, s);
 	end
-	% liquidity_premium = s.kappa / s.m * (int - s.itarget); % If using this, will need to check that other uses in this script of liquidity_premium still hold
     liquidity_premium = s.kappa / s.m * int;
 
 	% Market clearing for consumption pins down psi
     psi = consumption_market_clearing(eta, theta, Q, 'psi', s);
-	% psi = (Q * (s.r * (1 + (theta - 1) * eta) + s.eps1 / s.eps2) - ...
-    %     s.ah - (exp(s.eps2 * s.delta) - s.eps2 * s.delta) / s.eps2) / (s.ab - s.ah);
 
     % Calculate share of household wealth held in non-bank net worth
 	% omega = nh / wh = nh / (nh + theta nb)

@@ -1,8 +1,10 @@
 function out = interest(eta, s)
+% out = interest(eta, s)
+%
 % This function outputs the central bank's interest targeting rule.
 % The rule is subject to a non-negativity constraint.
 %
-% Written by William Chen and Greg Phelan, Aug 2020
+% Written by William Chen and Gregory Phelan, Aug 2020
 
 if s.nomrule == 1 % Piecewise or fed put style rule
     imax = s.imax;

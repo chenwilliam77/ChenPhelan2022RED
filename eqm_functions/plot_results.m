@@ -1,4 +1,4 @@
-  function plot_results(solution, s)
+function plot_results(solution, s)
     % Set up
     color       = s.color;
     N           = length(solution.eta);

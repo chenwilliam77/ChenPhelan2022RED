@@ -1,3 +1,6 @@
+function out = get_fd_coef(deriv, acc, x0, gridpt, fd_type, all)
+% function out = get_fd_coef(deriv, acc, x0, gridpt, fd_type, all)
+%
 % This function is a wrapper for Fornberg's algorithm
 % for computing finite difference coefficients
 % of arbitrary order and accuracy on non-uniform grids.
@@ -10,7 +13,7 @@
 %      specified are desired.
 %
 % Written by William Chen and Michael Curran, Apr. 2019
-function out = get_fd_coef(deriv, acc, x0, gridpt, fd_type, all)
+
     if nargin < 6
         all = 0;
     end

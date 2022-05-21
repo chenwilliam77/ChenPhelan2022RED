@@ -1,8 +1,10 @@
 function summary_stats = get_summary_stats(solution, s)
+% summary_stats = get_summary_stats(solution, s)
+%
 % This function calculates various summary statistics of interest
 % for calibration purposes and presentation of results.
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
 
 % Uniform averages
 % summary_stats.uniform = get_uniform_moments(solution);

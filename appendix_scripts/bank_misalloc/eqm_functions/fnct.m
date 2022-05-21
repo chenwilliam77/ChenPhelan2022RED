@@ -15,14 +15,11 @@ function [fp, dyn, risk_premium, Sharpe, liquidity_premium] = fnct(eta, f, s)
 	else
 	    int = interest(eta, s);
 	end
-	% liquidity_premium = s.kappa / s.m * (int - s.itarget); % If using this, will need to check that other uses in this script of liquidity_premium still hold
     liquidity_premium = s.kappa / s.m * int;
     ab = productivity_fnct(eta, 0, s);
 
 	% Market clearing for consumption pins down psi
     psi = consumption_market_clearing(eta, theta, Q, 'psi', s);
-	% psi = (Q * (s.r * (1 + (theta - 1) * eta) + s.eps1 / s.eps2) - ...
-    %     s.ah - (exp(s.eps2 * s.delta) - s.eps2 * s.delta) / s.eps2) / (s.ab - s.ah);
 
     % Calculate share of household wealth held in non-bank net worth
 	% omega = nh / wh = nh / (nh + theta nb)

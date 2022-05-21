@@ -1,9 +1,11 @@
 function solution = get_results(etaout, fout, s)
+% solution = get_results(etaout, fout, s)
+%
 % This function calculates results of interest, such as welfare
 % and the risk free rate. The ergodic distribution is handled in
 % another function.
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
     % Set up
     N                 = length(etaout);
     Dyn               = zeros(N, 8);

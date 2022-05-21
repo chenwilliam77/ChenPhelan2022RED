@@ -49,9 +49,6 @@ function out = fit_boundary_conditions(x, F0, s)
 
     % Construct residuals
     [value, ~, ~] = odeevnt(etaout(end), fout(end, :));
-    % implied_Qpstar = fout(end, 3) * s.r * (fout(end, 2) * etaout(end) + fout(end, 1) - 1) / ...
-    %     (s.r * (1 + (fout(end, 1) - 1) * etaout(end)) + s.eps1 / s.eps2);
-    % residuals = [value'; (implied_Qpstar - 0)];
     residuals = [value'; (fout(end, 3) - s.Qend)];
 
     if strcmp(s.lsq_solver, 'lsqnonlin')

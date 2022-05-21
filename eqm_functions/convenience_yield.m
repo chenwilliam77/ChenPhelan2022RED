@@ -1,4 +1,6 @@
 function out = convenience_yield(x_hd, order, s)
+% out = convenience_yield(x_hd, order, s)
+%
 % Implements the convenience yield function
 %
 % v(x_hd) = beta_1 * (x_hd + beta_2) ^ (1 - beta_3) / (1 - beta_3)
@@ -7,7 +9,7 @@ function out = convenience_yield(x_hd, order, s)
 % order - 0 for level, 1 for first derivative,
 %         results in an error otherwise
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
 
 if order == 0
     if s.beta_3 == 1

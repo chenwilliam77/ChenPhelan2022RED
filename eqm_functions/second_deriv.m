@@ -1,4 +1,6 @@
+function out = second_deriv(etaout, f)
 % function out = second_deriv(etaout, f)
+%
 % Calculate the second derivative using centered differences in the
 % interior, forward difference at the left boundary point, and backward
 % difference at the right boundary point.
@@ -7,7 +9,6 @@
 % reflecting boundary, so the optimal handling of the right boundary point
 % is to apply a ghost node approach and calculate the second derivative
 % consistent with a zero first derivative at the right boundary point.
-function out = second_deriv(etaout, f)
     N = length(etaout);
 	Dxx_coefs  = cell2mat(arrayfun(@(x0) get_fd_coef(2, 2, x0, etaout, 1), etaout(2:end-1), 'UniformOutput', false));
 	Dxx_coefs0 = get_fd_coef(2, 2, etaout(1), etaout, 2);

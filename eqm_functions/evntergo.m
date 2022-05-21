@@ -1,5 +1,5 @@
 function [value, isterminal, direction] = evntergo(eta, F)
-% [value,isterminal,direction] = evntfcn(eta, F) returns three
+% [value,isterminal,direction] = evntergo(eta, F) returns three
 % variables used by ode45 to determine when to terminate integration when
 % calculating ergodic distribution
 

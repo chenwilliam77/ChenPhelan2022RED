@@ -1,4 +1,6 @@
 function welfare_summary_stats = compare_welfare(sol_cell, sum_stat_cell, first_fignum, legend_text, colors, s, save_plots, figurespath);
+% welfare_summary_stats = compare_welfare(sol_cell, sum_stat_cell, first_fignum, legend_text, colors, s, save_plots, figurespath);
+%
 % Compares welfare across different equilibria through
 % plots and summary statistics
 %
@@ -22,7 +24,7 @@ function welfare_summary_stats = compare_welfare(sol_cell, sum_stat_cell, first_
 %
 % figurespath:   path to the figures folder to save plots (optional)
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
 
 % Set up
 N = length(sol_cell) - 1; % number of things to plots, not number of equilibria

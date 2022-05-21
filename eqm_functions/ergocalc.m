@@ -1,7 +1,9 @@
 function [etaout, densityout, CDF, enudge] = ergocalc(eta_in, Dyn, s)
+% [etaout, densityout, CDF, enudge] = ergocalc(eta_in, Dyn, s)
+%
 % This function calculates the ergodic (stationary) distribution.
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
 
 eta_mu_eta    = Dyn(:, 4) .* eta_in;
 eta_sigma_eta = Dyn(:, 2) .* eta_in;

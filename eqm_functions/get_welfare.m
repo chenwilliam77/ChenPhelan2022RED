@@ -1,4 +1,6 @@
 function [V, H, Vc, Vd, Vpi] = get_welfare(orig_eta, fout, Dyn, other_dyn, s)
+% [V, H, Vc, Vd, Vpi] = get_welfare(orig_eta, fout, Dyn, other_dyn, s)
+%
 % Calculate welfare using a finite difference scheme.
 % Outputs are
 % 1. V   (total welfare)
@@ -22,7 +24,7 @@ function [V, H, Vc, Vd, Vpi] = get_welfare(orig_eta, fout, Dyn, other_dyn, s)
 % V(eta) should be constant, defining H as above
 % always resulted in an approximately constant V(eta).
 %
-% Written by William Chen and Greg Phelan, Jan. 2022
+% Written by William Chen and Gregory Phelan, Jan. 2022
 
 % Grab values
 orig_sigma_eta       = Dyn(:, 2);
