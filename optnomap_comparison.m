@@ -76,7 +76,6 @@ rule1_stats.welfare(5) = consumption_equiv(rule1_sumstats{5}.ergodic.ExpV, rule1
 rule1_stats.stab_frac(5) = rule1_sumstats{5}.ergodic.stab_frac - rule1_sumstats{1}.ergodic.stab_frac;
 rule1_stats.stab_frac_pct50(5) = rule1_sumstats{5}.ergodic.stab_frac_pct50 - rule1_sumstats{1}.ergodic.stab_frac_pct50;
 
-
 % Calibration
 eval(parameters_file);
 s.plot_results = 0;
