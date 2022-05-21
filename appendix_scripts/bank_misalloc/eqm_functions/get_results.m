@@ -28,20 +28,9 @@ function solution = get_results(etaout, fout, s)
     end
     muQ = Qp ./ Q .* Dyn(:, 4) .* etaout + Qpp ./ Q ./ 2 .* (Dyn(:, 2) .* etaout).^2;
 
-    % Clean out the big spikes in muQ by using linear interpolation from
-    % left and right (as appropriate). More sophisticated alternative is
-    % least squares spline via SLM toolbox.
-%     bad_muQ = find(abs(muQ) >  1);
-%     psi1    = find(Dyn(:, 1) == 1, 1);
-%     l_muQ   = bad_muQ(bad_muQ < psi1);
-%     r_muQ   = bad_muQ(bad_muQ >= psi1);
-%     muQ(l_muQ) = interp1(etaout(1:bad_muQ(1) - 1), muQ(1:bad_muQ(1) - 1), etaout(l_muQ), s.interp, 'extrap');
-%     muQ(r_muQ) = interp1(etaout(bad_muQ(end) + 1:end), muQ(bad_muQ(end) + 1:end), etaout(r_muQ), s.interp, 'extrap');
-
     % Calculate the risk free rate
     % by finding interpolation nodes associated with
     % reasonably valued risk-free rates and using a spline
-    % TODO: update the interpolation algorithm
     iota       = investment_fnct(Q, 'iota', s);
     muK        = investment_fnct(Q, 'Phi', s) - s.delta;
     adj_costs  = investment_fnct(Q, 'adjustment_costs', s);
@@ -84,15 +73,6 @@ function solution = get_results(etaout, fout, s)
         muK + (gdp_p ./ gdp .* Dyn(:, 2) .* etaout) .* s.sigma;
     sigma_gdp = (gdp_p ./ gdp .* Dyn(:, 2) .* etaout) + s.sigma;
 
-    % Calculate derivatives via FD to get investment growth rate and volatility
-    iota_p = zeros(length(etaout), 1);
-    iota_p(1:end - 1) = diff(iota) ./ diff(etaout);
-    iota_pp = second_deriv(etaout, iota);
-    iota_pp(1) = 0; % sigma_eta = 0 at eta = 0
-    mu_iota = iota_p ./ iota .* Dyn(:, 4) .* etaout + iota_pp ./ iota ./ 2 .* (Dyn(:, 2) .* etaout).^2 + ...
-        muK + (iota_p ./ iota .* Dyn(:, 2) .* etaout) .* s.sigma;
-    sigma_iota = (iota_p ./ iota .* Dyn(:, 2) .* etaout) + s.sigma;
-
     % Calculate interest rates
     N = length(etaout);
     interestvec = zeros(N, 1);
@@ -104,7 +84,6 @@ function solution = get_results(etaout, fout, s)
     Ch = s.r * fout(:, 3) .* (1 + (fout(:, 1) - 1) .* etaout);
     transfers_h = (etaout .* s.T) ./ (1 - etaout) + (Dyn(:, 1) - etaout) .* liquidity_premium;
     transfers_b = -s.T + (Dyn(:, 1) - etaout) .* liquidity_premium;
-    muCh = drf - s.r + Dyn(:, 5).^2 + transfers_h;
 
     % Calculate ergodic density
     [eta_density, density, cdf, ~] = ergocalc(etaout, Dyn, s);
@@ -112,8 +91,6 @@ function solution = get_results(etaout, fout, s)
     % Get Welfare
     inflation = interestvec - drf;
     other_dyn.inflation = inflation;
-    other_dyn.mu_Q = muQ;
-    other_dyn.mu_Ch = muCh;
     other_dyn.Ch = Ch;
     [Welfare, H, WelfareConsume, WelfareDeposits, WelfarePi] = get_welfare(etaout, fout, Dyn, other_dyn, s);
 
@@ -129,7 +106,6 @@ function solution = get_results(etaout, fout, s)
     solution.thetapp = fp(:, 2);
     solution.Q  = fout(:, 3);
     solution.Qp = fp(:, 3);
-    solution.Qpp = Qpp;
     solution.psi = Dyn(:, 1);
     solution.ab = ab;
     solution.Leverage = Dyn(:, 1) ./ etaout - 1;
@@ -147,9 +123,11 @@ function solution = get_results(etaout, fout, s)
     solution.omega = Dyn(:, 6);
     solution.mu_theta = Dyn(:, 7);
     solution.sigma_theta = Dyn(:, 8);
-    solution.risk_premium = risk_premium;
     solution.Sharpe = Sharpe;
+    solution.household_premium = sigma_Ch .* (s.sigma + sigma_Q);
+    solution.solvency_premium = risk_premium - solution.household_premium;
     solution.liquidity_premium = liquidity_premium;
+    solution.risk_premium = risk_premium;
     solution.Welfare = Welfare;
     solution.H = H;
     solution.WelfareConsume = WelfareConsume;
@@ -161,18 +139,11 @@ function solution = get_results(etaout, fout, s)
     solution.deposit_spread = DS;
     solution.drd = drf - DS;
     solution.Ch = Ch;
-    solution.mu_Ch = muCh;
     solution.mu_K = muK;
-    solution.mu_Q = muQ;
     solution.iota = iota;
-    solution.mu_iota = mu_iota;
-    solution.sigma_iota = sigma_iota;
-    solution.invst_adjustment_costs = adj_costs;
-    solution.invst_capital_value_ratio = iota ./ fout(:, 3);
     solution.gdp = gdp;
     solution.mu_gdp = mu_gdp;
     solution.sigma_gdp = sigma_gdp;
-    solution.gdp_capital_value_ratio = gdp ./ fout(:, 3);
     solution.interestvec = interestvec;
     solution.inflation = inflation;
     solution.eta_density = eta_density;

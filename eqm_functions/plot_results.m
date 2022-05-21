@@ -138,17 +138,6 @@
         xlabel('$\eta = \frac{N_b}{QK}$, bank wealth share','FontSize',s.fontsize,'FontWeight','b')
         ylabel('$V(\eta)$','FontSize',s.fontsize,'FontWeight','b')
 
-    figure(13); hold on
-        plot(solution.eta, solution.H, 'color',color,'linestyle',s.line,'linewidth',s.width);
-        if isfield(s, 'use_title')
-            if s.use_title
-                title('Marginal Value of Household Wealth','FontSize',s.fontsize)
-            end
-        end
-        xlim([start 1.05 * etastar])
-        xlabel('$\eta = \frac{N_b}{QK}$, bank wealth share','FontSize',s.fontsize,'FontWeight','b')
-        ylabel('$H(\eta)$','FontSize',s.fontsize,'FontWeight','b')
-
     figure(14); hold on
         plot(solution.eta, solution.theta, 'color',color,'linestyle',s.line,'linewidth',s.width);
         if isfield(s, 'use_title')
@@ -159,17 +148,6 @@
         xlim([start 1.05 * etastar])
         xlabel('$\eta = \frac{N_b}{QK}$, bank wealth share','FontSize',s.fontsize,'FontWeight','b')
         ylabel('$\theta(\eta)$','FontSize',s.fontsize,'FontWeight','b')
-
-    figure(15)
-        plot(solution.eta, solution.mu_Ch,'color',color,'linestyle',s.line,'linewidth',s.width); hold on
-        xlabel('$\eta = \frac{N_b}{QK}$, bank wealth share','FontSize',s.fontsize,'FontWeight','b')
-        ylabel('$\mu_{Ch}$','FontSize',s.fontsize,'FontWeight','b')
-        if isfield(s, 'use_title')
-            if s.use_title
-                title('Consumption Growth Rate');
-            end
-        end
-        xlim([start 1.05*etastar])
 
     figure(16)
         plot(solution.eta, solution.mu_K,'color',color,'linestyle',s.line,'linewidth',s.width); hold on
@@ -348,17 +326,6 @@
         end
         ylim([0 1])
 
-    figure(50)
-        yyaxis left;
-        plot(solution.eta, solution.psi, 'color',color,'linestyle',s.line,'linewidth',s.width); hold on
-        ylabel('$\psi$','FontSize', s.fontsize, 'FontWeight', 'b');
-        plot([s.etaPUT, s.etaPUT], [0, 1], 'linestyle', '-.', 'color', color); hold off
-        yyaxis right;
-        ylabel('$i','FontSize', s.fontsize, 'FontWeight', 'b')
-        plot(solution.eta, 100 * solution.interestvec, 'color',color,'linestyle','--','linewidth',s.width); hold on
-        xlabel('$\eta$','FontSize',s.fontsize,'FontWeight','b')
-        legend({'Nominal Rate', '$\psi$'}, 'FontSize', s.fontsize, 'Location', 'southeast');
-
     figure(51); hold on
         plot(solution.eta, solution.drd, 'color',color,'linestyle',s.line,'linewidth',s.width);
         if isfield(s, 'use_title')
@@ -380,17 +347,6 @@
         xlim([start 1.05 * etastar])
         xlabel('$\eta = \frac{N_b}{QK}$, bank wealth share','FontSize',s.fontsize,'FontWeight','b')
         ylabel('Deposit Spread','FontSize',s.fontsize,'FontWeight','b')
-
-    figure(53); hold on
-        plot(solution.eta, solution.invst_adjustment_costs, 'color',color,'linestyle',s.line,'linewidth',s.width);
-        if isfield(s, 'use_title')
-            if s.use_title
-                title('Investment Adustment Costs','FontSize',s.fontsize)
-            end
-        end
-        xlim([start 1.05 * etastar])
-        xlabel('$\eta = \frac{N_b}{QK}$, bank wealth share','FontSize',s.fontsize,'FontWeight','b')
-        ylabel('$\iota - \Phi(\iota)$','FontSize',s.fontsize,'FontWeight','b')
 
     figure(54); hold on
         plot(solution.eta, solution.convenience_yield, 'color',color,'linestyle',s.line,'linewidth',s.width);
