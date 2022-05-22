@@ -93,7 +93,6 @@ function solution = get_calibration_results(etaout, fout, s)
     solution.drf = drf;
     solution.deposit_spread = DS;
     solution.iota = iota;
-    solution.sigma_iota = sigma_iota;
     solution.gdp = gdp;
     solution.sigma_gdp = sigma_gdp;
     solution.interestvec = interestvec;

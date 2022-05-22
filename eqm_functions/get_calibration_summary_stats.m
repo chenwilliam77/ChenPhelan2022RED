@@ -30,7 +30,6 @@ function out = get_ergodic_moments(sol, s)
         out.Sharpe = ergodic_mean(sol.Sharpe(i), sol.density, sol.eta_density);
 	    out.MarketLeverageRatio = ergodic_mean(sol.MarketLeverageRatio(i), sol.density, sol.eta_density);
 		out.iota = ergodic_mean(sol.iota(i), sol.density, sol.eta_density);
-		out.sigma_iota = ergodic_mean(sol.sigma_iota(i), sol.density, sol.eta_density);
 		out.invst_elasticity = ergodic_mean(sol.invst_elasticity(i), sol.density, sol.eta_density);
 
         non_zlb = sol.eta_density >= s.etaPUT;
@@ -50,7 +49,6 @@ function out = get_ergodic_moments(sol, s)
         out.Sharpe = ergodic_mean(sol.Sharpe(ia), sol.density(ib), eta);
 	    out.MarketLeverageRatio = ergodic_mean(sol.MarketLeverageRatio(ia), sol.density(ib), eta);
 		out.iota = ergodic_mean(sol.iota(ia), sol.density(ib), eta);
-		out.sigma_iota = ergodic_mean(sol.sigma_iota(ia), sol.density(ib), eta);
 		out.invst_elasticity = ergodic_mean(sol.invst_elasticity(ia), sol.density(ib), eta);
 
         non_zlb = eta >= s.etaPUT;

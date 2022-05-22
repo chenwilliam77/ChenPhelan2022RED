@@ -18,13 +18,18 @@ function [solution, summary_stats] = geteqm(s)
 
     % initial conditions for (theta, thetap, Q) at eta = 0 or eta = eta_TR
     % Search over theta and/or thetap to
-    % solve for equilibrium. If s.search_init_conds = 1,
+    % solve for equilibrium. If search_init_conds = 1,
     % then we search over theta,
-    % and if s.search_init_conds = 2,
+    % and if search_init_conds = 2,
     % then we search over both theta and thetap.
     % In both cases, we start with a bisection search
     % over theta, and then we solve the nonlinear root
     % problem using a minimization algorithm.
+    if isfield(s, 'search_init_conds')
+        search_init_conds = s.search_init_conds;
+    else % Default to searching over 1 initial condition
+        search_init_conds = 1;
+    end
     theta0  = 1;                     % just initializing
     thetap0 = s.thetap0;             % A large negative number
     Q0      = s.Qbeg * s.Q0_perturb; % Q(0) = (ah + deprec_adjust / eps2) / (r + eps1 / eps2)
@@ -98,7 +103,7 @@ function [solution, summary_stats] = geteqm(s)
         end
 
         [out, resnorm, ~, exitflag] = lsqnonlin(@(x) fit_boundary_conditions(x, F0, s), (a + b) / 2, a, b, optimoptions);
-    elseif s.search_init_conds == 1
+    elseif search_init_conds == 1
         if strcmp(s.lsq_solver, 'fminsearch')
             [out, resnorm, exitflag] = fminsearch(@(x) fit_boundary_conditions(x, F0, s), (thetaL + thetaR) / 2, optimoptions);
         elseif strcmp(s.lsq_solver, 'fmincon')
@@ -107,7 +112,7 @@ function [solution, summary_stats] = geteqm(s)
         else
            error(['Cannot use solver ', s.lsq_solver]);
         end
-    elseif s.search_init_conds == 2
+    elseif search_init_conds == 2
         if strcmp(s.lsq_solver, 'fminsearch')
             [out, resnorm, exitflag] = fminsearch(@(x) fit_boundary_conditions(x, F0, s), ...
                 [(thetaL + thetaR) / 2; F0(2)], optimoptions);
@@ -129,7 +134,7 @@ function [solution, summary_stats] = geteqm(s)
     end
 
     % Calculate final solution
-    if s.search_init_conds == 1
+    if search_init_conds == 1
         F0(1) = out;
     else
         F0(1) = out(1);

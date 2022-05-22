@@ -25,22 +25,9 @@ function solution = get_calibration_results(etaout, fout, s)
     Qpp(1) = 0; % sigma_eta = 0 at eta = 0
     muQ = Qp ./ Q .* Dyn(:, 4) .* etaout + Qpp ./ Q ./ 2 .* (Dyn(:, 2) .* etaout).^2;
 
-    % Clean out the big spikes in muQ by using linear interpolation from
-    % left and right (as appropriate). More sophisticated alternative is
-    % least squares spline via SLM toolbox.
-%     bad_muQ = find(abs(muQ) >  1);
-%     psi1    = find(Dyn(:, 1) == 1, 1);
-%     l_muQ   = bad_muQ(bad_muQ < psi1);
-%     r_muQ   = bad_muQ(bad_muQ >= psi1);
-%     muQ(l_muQ) = interp1(etaout(1:bad_muQ(1) - 1), muQ(1:bad_muQ(1) - 1), etaout(l_muQ), s.interp, 'extrap');
-%     muQ(r_muQ) = interp1(etaout(bad_muQ(end) + 1:end), muQ(bad_muQ(end) + 1:end), etaout(r_muQ), s.interp, 'extrap');
-
     % Calculate the risk free rate
     % by finding interpolation nodes associated with
     % reasonably valued risk-free rates and using a spline
-    % TODO: update the interpolation algorithm
-    % TODO: figure out how to calculate drf when there are leverage constraints
-    %       (current algorithm assumes banks' FOC holds)
     iota       = investment_fnct(Q, 'iota', s);
     muK        = investment_fnct(Q, 'Phi', s) - s.delta;
     invst_elas = investment_fnct(Q, 'invst_elasticity', s);
@@ -106,30 +93,19 @@ function solution = get_calibration_results(etaout, fout, s)
     % Populate solution struct
     solution.eta = etaout;
     solution.psi = Dyn(:, 1);
-    % solution.BookLeverageRatio = Dyn(:, 1) ./ etaout;
     solution.MarketLeverageRatio = (Dyn(:, 1) ./ etaout - 1) ./ fout(:, 1) + 1;
     solution.sigma_eta = Dyn(:, 2);
     solution.mu_eta = Dyn(:, 4);
     solution.sigma_Ch = Dyn(:, 5);
-    % solution.risk_premium = risk_premium;
     solution.Sharpe = Sharpe;
-    % solution.liquidity_premium = liquidity_premium;
     solution.drf = drf;
     solution.deposit_spread = DS;
-    % solution.drd = drf - DS;
-    % solution.Ch = Ch;
-    % solution.mu_Ch = muCh;
-    % solution.mu_K = muK;
     solution.iota = iota;
-    % solution.mu_iota = mu_iota;
-    solution.sigma_iota = sigma_iota;
     solution.gdp = gdp;
-    % solution.mu_gdp = mu_gdp;
     solution.sigma_gdp = sigma_gdp;
     solution.interestvec = interestvec;
     solution.inflation = inflation;
     solution.eta_density = eta_density;
     solution.density = density;
     solution.invst_elasticity = invst_elas;
-    % solution.transfers = transfers;
 end
