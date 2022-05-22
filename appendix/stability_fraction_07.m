@@ -99,3 +99,5 @@ if save_plots
     f = figure(41);
     saveas(f, [figurespath, '/stability_v_ilaw.', s.graphics_format]);
 end
+
+close 1
