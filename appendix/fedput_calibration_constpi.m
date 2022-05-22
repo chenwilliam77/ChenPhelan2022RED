@@ -14,7 +14,6 @@ figurespath = [pwd(), '/../figures/fedput_calibration_constpi_friedman/'];
 save_plots = 1; % Set to 1 if you want to save plots
 find_constpi_rule = 1; % Set to 1 to calculate the constant inflation MP rule, otherwise load from memory
 constpi_path = [pwd(), '/../save/output_data/fedput_calibration_constpi/']; % save path for constant inflation MP rule
-leg_text = {'Calibration', 'Inflation Targeting', 'Friedman'};
 
 %% Compute equilibrium
 % Fed put
