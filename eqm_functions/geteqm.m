@@ -12,6 +12,15 @@ function [solution, summary_stats] = geteqm(s)
 
     %% Set up
 
+    % Determine # of initial conditions to search over.
+    % For more details, see comments starting
+    % at line 64 below
+    if isfield(s, 'search_init_conds')
+        search_init_conds = s.search_init_conds;
+    else % Default to 1
+        search_init_conds = 1;
+    end
+
     % Determine right boundary conditions
     if isfield(s, 'dividend_subsidy')
         div_sub = s.dividend_subsidy;
@@ -28,11 +37,11 @@ function [solution, summary_stats] = geteqm(s)
     % Determine left boundary conditions
     if isfield(s, 'tail_risk')
         tail_risk = s.tail_risk;
-        if tail_risk 
+        if tail_risk
             if ~isfield(s, 'eta_TR')
                 error('Cannot apply tail risk insurance if eta_TR is not set.');
             end
-            if s.search_init_conds == 2
+            if search_init_conds == 2
                 error('Number of initial conditions to search over cannot be 2 if tail_risk is true');
             end
         end
@@ -53,9 +62,9 @@ function [solution, summary_stats] = geteqm(s)
         etaspan = [s.eta_TR s.end];
     else
         % Search over theta and/or thetap to
-        % solve for equilibrium. If s.search_init_conds = 1,
+        % solve for equilibrium. If search_init_conds = 1,
         % then we search over theta,
-        % and if s.search_init_conds = 2,
+        % and if search_init_conds = 2,
         % then we search over both theta and thetap.
         % In both cases, we start with a bisection search
         % over theta, and then we solve the nonlinear root
@@ -142,7 +151,7 @@ function [solution, summary_stats] = geteqm(s)
         end
 
         [out, resnorm, ~, exitflag] = lsqnonlin(@(x) fit_boundary_conditions(x, F0, s), (a + b) / 2, a, b, optimoptions);
-    elseif s.search_init_conds == 1
+    elseif search_init_conds == 1
         if strcmp(s.lsq_solver, 'fminsearch')
             [out, resnorm, exitflag] = fminsearch(@(x) fit_boundary_conditions(x, F0, s), (thetaL + thetaR) / 2, optimoptions);
         elseif strcmp(s.lsq_solver, 'fmincon')
@@ -151,7 +160,7 @@ function [solution, summary_stats] = geteqm(s)
         else
            error(['Cannot use solver ', s.lsq_solver]);
         end
-    elseif s.search_init_conds == 2
+    elseif search_init_conds == 2
         if strcmp(s.lsq_solver, 'fminsearch')
             [out, resnorm, exitflag] = fminsearch(@(x) fit_boundary_conditions(x, F0, s), ...
                 [(thetaL + thetaR) / 2; F0(2)], optimoptions);
@@ -173,7 +182,7 @@ function [solution, summary_stats] = geteqm(s)
     end
 
     % Calculate final solution
-    if s.search_init_conds == 1
+    if search_init_conds == 1
         F0(1) = out;
     else
         F0(1) = out(1);
@@ -231,7 +240,7 @@ function [solution, summary_stats] = geteqm(s)
             fprintf('Investment Price Elas.:     %.2f\n', summary_stats.ergodic.invst_elasticity);
             if isfield(s, 'crisis_output_losses') && s.crisis_output_losses
                 fprintf('Output Loss in Crisis:      %.2f%%\n', 100 * avg_gdp_loss);
-            end            
+            end
             fprintf('Investment-Capital Ratio:   %.2f%%\n', 100 * summary_stats.ergodic.iota);
             fprintf('Prob. of Distress:          %.2f%%\n', 100 - summary_stats.ergodic.stab_frac);
         end
