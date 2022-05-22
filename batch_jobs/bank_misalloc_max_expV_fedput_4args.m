@@ -7,14 +7,14 @@
 
 close all;
 addpath ../parameters_specs
-addpath(genpath('../appendix_scripts/bank_misalloc/eqm_functions'))
+addpath(genpath('../appendix/bank_misalloc/eqm_functions'))
 
 savepath = [pwd(), '/../output_data/bank_misalloc_max_expV_fedput_4args/'];
 if ~isfolder(savepath)
     mkdir(savepath);
 end
 run_fmincon = 1; % set to 1 to minimize the function over the hyper cube specified by lb and ub
-nworkers    = 32;
+nworkers    = 16;
 
 % Set up
 bank_misalloc_calibration_parameters;
