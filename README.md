@@ -43,6 +43,8 @@ but the parameter specfiles automatically sets this up.
 Below, we report which script generates which
 figure/table in the main body of the paper. This section assumes output has already been generated
 by the batch scripts, and the user only wants to produce tables and figures.
+In order to save figures to the `figures/` folder, the variable
+`save_plots` near the top of every script must be set to true (or 1).
 
 - Table 2: `fedput_calibration.m`
 - Figure 1: `fedput_calibration.m`
@@ -59,7 +61,10 @@ figure/table in Appendices C and E.
 The "current working directory" for these scripts
 is `appendix/`. This section assumes output has already been generated
 by the batch scripts, and the user only wants to produce tables and figures.
+In order to save figures to the `figures/` folder, the variable
+`save_plots` near the top of every script must be set to true (or 1).
 We do not provide the code for Appendix D.
+
 
 - Table 4: `fedput_calibration_constpi.m`
 - Figure 6: `optnomap_vary_lambda.m`
