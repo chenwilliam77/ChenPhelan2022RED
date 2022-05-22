@@ -26,7 +26,7 @@ Please file an issue if you have any questions.
 * `eqm_functions/`: functions used to compute equilibrium and welfare for the
 baseline model and the extension to CES production
 
-* `parameter_specs/`: scripts that initialize economic and numerical parameters.
+* `parameters_specs/`: scripts that initialize economic and numerical parameters.
 The code assumes that the default interpreter for plot text is LaTeX,
 but the parameter specfiles automatically sets this up.
 
