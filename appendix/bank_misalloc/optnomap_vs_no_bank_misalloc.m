@@ -5,7 +5,7 @@
 
 close all;
 addpath ../../parameters_specs
-addpath(genpath('../../eqm_functions'))
+addpath(genpath('eqm_functions'))
 
 parameters_file = 'bank_misalloc_calibration_parameters';
 save_plots = 1; % Set to 1 if you want to save plots
