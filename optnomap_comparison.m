@@ -8,10 +8,8 @@ close all;
 addpath parameters_specs
 addpath(genpath('eqm_functions'))
 
-phi_form = 1;
-
-parameters_file = ['calibration_parameters_form' num2str(phi_form)];
-load(['save/output_data/max_expV_fedput_4args_form' num2str(phi_form) '/fmincon_run_interior-point_07-Mar-2022.mat']);
+parameters_file = 'calibration_parameters';
+load('save/output_data/max_expV_fedput_4args/fmincon_run_interior-point_07-Mar-2022.mat');
 
 %% Rule 1 - Optimal Fed Put
 n_comps = 6;
