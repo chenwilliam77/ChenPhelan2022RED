@@ -16,7 +16,7 @@ save_plots = 1;
 if save_plots && ~isfolder(figurespath)
     mkdir(figurespath);
 end
-load(['/../save/output_data/max_expV_fedput_4args/fmincon_run_interior-point_07-Mar-2022.mat']);
+load('../save/output_data/max_expV_fedput_4args/fmincon_run_interior-point_07-Mar-2022.mat');
 leg_text = {'No MaP', 'Looser MaP', 'Tighter MaP'};
 
 % Policy 1

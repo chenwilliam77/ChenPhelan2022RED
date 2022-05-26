@@ -68,7 +68,7 @@ We do not provide the code for Appendix D.
 
 - Table 4: `fedput_calibration_constpi.m`
 - Figure 6: `optnomap_vary_lambda.m`
-- Table 3 numbers for different lambda: `optnomap_comparison_lambda0.m` and `optnomap_comparison_lambda_half.m`
+- Table 3 welfare comparisons for different lambda: `optnomap_comparison_lambda.m`.
 - Figure 7: `optnomap_vary_iput.m`
 - Figure 8: `optnomap_vary_ilaw.m`
 - Figure 9: `optnomap_vary_strike.m`
