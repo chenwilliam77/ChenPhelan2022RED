@@ -11,7 +11,7 @@ tic
 
 parameters_file = 'lc_icc_calibration_parameters';
 do_plot_results = 1;
-figurespath = [pwd(), '/figures/lc_icc_optmp_vary_alpha/'];
+figurespath = [pwd(), '/figures/optmp_vary_alpha/'];
 save_plots = 1;
 leg_text = {'OptMP', 'Inflation Targeting', 'Friedman, $\lambda > 0$'};
 colors = {'black', 'blue', 'red'};
