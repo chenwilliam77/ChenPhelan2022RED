@@ -9,7 +9,7 @@ close all;
 addpath ../parameters_specs
 addpath(genpath('../appendix/bank_misalloc/eqm_functions'))
 
-savepath = [pwd(), '/../output_data/bank_misalloc_max_expV_fedput_4args/'];
+savepath = [pwd(), '/../save/output_data/bank_misalloc_max_expV_fedput_4args/'];
 if ~isfolder(savepath)
     mkdir(savepath);
 end
