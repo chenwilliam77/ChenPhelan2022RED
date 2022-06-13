@@ -45,6 +45,9 @@ figure/table in the main body of the paper. This section assumes output has alre
 by the batch scripts, and the user only wants to produce tables and figures.
 In order to save figures to the `figures/` folder, the variable
 `save_plots` near the top of every script must be set to true (or 1).
+If none of the scripts have been edited, then
+running `run_all.m` with `main_paper = 1`
+will run all of the scripts below.
 
 - Table 2: `fedput_calibration.m`
 - Figure 1: `fedput_calibration.m`
@@ -64,7 +67,9 @@ by the batch scripts, and the user only wants to produce tables and figures.
 In order to save figures to the `figures/` folder, the variable
 `save_plots` near the top of every script must be set to true (or 1).
 We do not provide the code for Appendix D.
-
+If none of the scripts have been edited, then
+running `run_all.m` with `appendix = 1`
+will run all of the scripts below.
 
 - Table 4: `fedput_calibration_constpi.m`
 - Figure 6: `optnomap_vary_lambda.m`
