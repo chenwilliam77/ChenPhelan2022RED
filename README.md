@@ -6,6 +6,8 @@ William Chen and Gregory Phelan
 
 The code in this repository produces all figures and tables found
 in the paper, plus some additional unreported results.
+The code was run on MacOS; it has not been tested
+on other operating systems.
 Some results require a long computation time, e.g. the
 optimal monetary policy rule. The scripts for these latter
 results are also provided, but we recommend running
