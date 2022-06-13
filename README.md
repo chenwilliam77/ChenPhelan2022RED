@@ -101,26 +101,6 @@ MP rules in the paper using batch jobs.
 4. Run `bank_misalloc_max_expV_fedput_4args.m` to calculate OptNoMaP
    when banks misallocate capital.
 
-1. Run `numerical_example.m` with `use_saved_guess = 0` to generate the
-   converged solution in `data/gamA1p05_gamB2.mat`.
-
-2. Run `compute_eqm_for_benchmarks_etc.m` and `compute_ces_eqms.m` to generate
-   some output that is needed by `1good/` and `linear_invst/`
-
-3. Change directory to `hpcc/`.
-
-4. Run `hpcc/plot_best_response.m` to sketch out the best responses
-   and provide a coarse grid of initial guesses for the other scripts.
-
-5. Run `plot_stat_pdf.m`, `get_best_response.m`, `sparse_get_br.m`, `check_zero.m`, and `iter_nash.m`
-   in `hpcc/`.
-
-6. Run `analyze_policy.m` twice after `get_best_response.m` and `sparse_get_br.m` finish, once each
-   for the output of the latter two scripts.
-
-7. To check the robustness results for different parameters, re-run steps 4-6 but either adding lines
-   to the scripts to change parameters or creating a new parameter script instead of `parameters/baseline_parameters.m`.
-
 ## Miscellaneous Scripts
 
 - We provide example scripts that
