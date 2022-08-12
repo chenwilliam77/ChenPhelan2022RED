@@ -25,8 +25,7 @@ Please file an issue if you have any questions.
 
 * MATLAB scripts in top-level of directory: produce results for paper's main body
 
-* `eqm_functions/`: functions used to compute equilibrium and welfare for the
-baseline model and the extension to CES production
+* `eqm_functions/`: functions used to compute equilibrium and welfare
 
 * `parameters_specs/`: scripts that initialize economic and numerical parameters.
 The code assumes that the default interpreter for plot text is LaTeX,
